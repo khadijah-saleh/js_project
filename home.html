@@ -10,14 +10,9 @@
     <link rel="stylesheet" href="style.css">
     <title>SHOP</title>
 
-    <style>
-        .true{
-            
-        }
-    </style>
 </head>
 
-<body  >
+<body>
     <nav class="navs navstyle">
         <div class="cont1">
             <div class="brand">
@@ -26,8 +21,8 @@
             </div>
 
             <div class="search">
-                    <input type="text" placeholder="search here ..." id="textsearch">
-                    <button type="submit" style="cursor:pointer;" onclick="searchbyprice ()">Search</button>
+                <input type="text" placeholder="search here ..." id="textsearch">
+                <button type="submit" style="cursor:pointer;" onclick="searchbyprice()">Search</button>
             </div>
 
             <ul class="flexstyle ulstyle">
@@ -51,9 +46,10 @@
             </ul>
 
             <div class="bottom">
-                <a class="logout" href="./login.html" target="black" id="login" >Login/SingUp</a>
-               <a class="logout" href="./profile.html" target="black" id="username" ></a>
-               <button class="logout" style="margin-left: 10px; font-size: 15px; color: red;" id="logout" onclick="logout()">Log Out</button>
+                <a class="logout" href="./login.html" target="black" id="login">Login/SingUp</a>
+                <a class="logout" href="./profile.html" target="black" id="username"></a>
+                <button class="logout" style="margin-left: 10px; font-size: 15px; color: red;" id="logout"
+                    onclick="logout()">Log Out</button>
 
             </div>
         </div>
@@ -157,18 +153,20 @@
         </div>
     </footer>
     <script src="home.js"></script>
-    <script src="cart.js"></script>
+    <script src="home2.js"></script>
+
+
 
     <script>
-        var loginButton =  document.getElementById('login');
-        var logoutButton =  document.getElementById('logout');
-        var usernameButton =  document.getElementById('username');
+        var loginButton = document.getElementById('login');
+        var logoutButton = document.getElementById('logout');
+        var usernameButton = document.getElementById('username');
 
-        if(localStorage.getItem('username')) {
+        if (localStorage.getItem('username')) {
             loginButton.style.display = 'none';
             usernameButton.innerHTML = 'welcome ' + localStorage.getItem('username');
             logoutButton.style.display = 'block';
-        }else {
+        } else {
             loginButton.style.display = 'block';
             usernameButton.style.display = 'none';
             logoutButton.style.display = 'none';
@@ -182,6 +180,7 @@
             window.location.href = 'home.html';
         }
 
+        
     </script>
 </body>
 </html>

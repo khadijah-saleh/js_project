@@ -1,86 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SinUp</title>
     <link rel="stylesheet" href="login.css">
-
+  
 </head>
-
 <body>
-    <div class="container">
-        <input type="checkbox" id="flip" hidden>
-        <div class="cover">
-            <div class="front">
-                <img src="./16.jpg" alt="">
+ <div class="container">
+     <input type="checkbox" id="flip" hidden>
+    <div class="cover">
+        <div class="front">
+            <img src="./16.jpg" alt="">      
 
-            </div>
         </div>
-        <form action="#">
-            <div class="form-content">
-                <div class="login-form">
-                    <h3 style="text-align: center; color: white; ">Welcome Back</h3>
-                    <div class="title">
-                        login
-                    </div>
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <img src="./img/security.png" style="width: 45px;">
-                            <input type="text" placeholder="User Name" required>
-                        </div>
-                        <div class="input-box">
-                            <img src="./img/icon.png" style="width: 45px;">
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div class="text"><a href="#">Forgot password?</a></div>
-                        <div class=" button input-box">
-                            <input type="submit" value="log in">
-                        </div>
-                        <div class="text sign-up-text">Don't have an account?<label for="flip">Signup now</label>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="SignUp-form">
-                    <h4 style="text-align: center; color: rgb(234, 247, 250); ">Welcome To The Website</h4>
-                    <div class="title">
-                        Sign Up
-                    </div>
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <img src="./img/security.png" style="width: 35px;">
-                            <input type="text" placeholder="User Name" required>
-                        </div>
-                        <div class="input-box">
-                            <img src="./img/5.png" style="width: 35px;">
-                            <input type="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-box">
-                            <img src="./img/icon.png" style="width: 35px;">
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div class=" button input-box">
-                            <input type="submit" value="Register">
-                        </div>
-                        <div class="text sign-up-text">Already have an account?<label for="flip">Login now</label>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-        </form>
-
     </div>
-    <script src="./login.js"></script>
+     <form action="#">
+     <div class="form-content" >
+        <div class="login-form">
+            <h3 style="text-align: center; color: white; ">Welcome Back</h3>
+            <div class="title">
+             login
+            </div>
+            <div class="input-boxes">
+           <div class="input-box">
+               <img src="./img/security.png" style="width: 45px;">
+               <input type="text" placeholder="User Name" id="checkuser" >
+           </div>
+           <span id="erorLoginName" ></span>
+           <div class="input-box">
+               <img src="./img/icon.png"style="width: 45px;">
+               <input type="password" placeholder="Password" id="passaaa">
+           </div>
+           <span id="erorLoginPass" ></span>
+           <div class="text"><a href="#">Forgot password?</a></div>
+           <div class=" button input-box">
+               <input type="button" value="log in" onclick="check()">
+               <!-- <a href="./profile.html">log in</a> -->
+           </div>
+           <div class="text sign-up-text">Don't have an account?<label for="flip">Signup now</label>
 
+           </div>
+            </div>
+
+        </div>
+
+
+        <div class="SignUp-form">
+            <h4 style="text-align: center; color: rgb(234, 247, 250); ">Welcome To The Website</h4>
+           <div class="title">
+               Sign Up
+           </div>
+           <div class="input-boxes">
+          <div class="input-box">
+           <img src="./img/security.png" style="width: 35px;" >
+           <input type="text" placeholder="User Name" id="fname" onkeyup=" ValiName()" >
+       </div>
+       <span id="erorName" ></span>
+
+       <div class="input-box">
+        <img src="./img/5.png" style="width: 35px;" >
+        <input type="email" id="idemail" placeholder="Email" onkeyup="valiEmail()" >
+    </div>
+    <span id="erorEmail"></span>
+
+          <div class="input-box">
+              <img src="./img/icon.png" style="width: 35px;">
+              <input type="password" placeholder="Password" id="pass" onkeyup="valiPass()" >
+          </div>
+          <span id="erorPass" ></span>
+          <div class=" button input-box">
+              <input type="button" value="Register" id="butt" onclick="validatioTotal()">
+              <!-- <a href="./profile.html">Register</a> -->
+          </div>
+          <div class="text sign-up-text">Already have an account?<label for="flip">Login now</label>
+
+           </div>
+
+       </div>   
+     </div>     
+
+         
+     </form>
+
+ </div>
+
+
+
+ <script src="./login.js"></script>
+
+
+<!-- <script>
+
+// var username = document.getElementById('txtuser').value;
+// var passtest=  document.getElementById('pass').value;
+// var Email=  document.getElementById('email').value;
+
+// function checkUser(input){
+// // var regUser = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
+// if(input.value.match( /^[a-z]+ -[a-z]$/)!=null){
+// return true;
+// }else
+// document.getElementById('error').innerHTML="You Most Your Name";
+//  document.getElementById('error').style.color='red';
+//     input.style.border="Solid  5px red";
+//     input.focus();
+//      return false;
+// }
+
+
+// var mycheck = new RegExp();
+// function login(){
+//     mycheck = /\w{3,}/;
+//     if(mycheck.test(username) == false){
+//         document.getElementById('error').innerHTML="Error";
+//          document.getElementById('error').style.color='red';
+//          username.style.border="Solid  5px red";
+//          username.focus();
+//          return false;
+//     }
+//     mycheck =/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+//     if(mycheck.test(passtest) == false || pass == ''){
+//         document.getElementById('error').innerHTML="Error";
+//          document.getElementById('error').style.color='red';
+//          passtest.style.border="Solid  5px red";
+//          passtest.focus();
+//          return false;
+//     }
+
+// }
+// }
+//  function validatio(){
+//      var textf = document.getElementById('txtfname');
+//      var checkName = "^[A-Za-z][A-Za-z0-9_]{7,29}$";
+//      if(textf.value ==0 ||textf==null && !textf.value.Mach(checkName)){
+//          document.getElementById('error').innerHTML="You Most Your Name";
+//          document.getElementById('error').style.color='red';
+//      textf.style.border="Solid  5px red";
+//      textf.focus();
+//      return false;
+//      }else
+//      document.getElementById('error').innerHTML='';
+//      return true;
+    
+
+//  }
+
+ 
+
+// function ValiUser(input)
+// {
+//  var checkName = "^[A-Za-z][A-Za-z0-9_]{7,29}$";
+//  if(input.value.Mach(checkName)){
+//     document.getElementById('error').innerHTML="You Most Your Name";
+//          document.getElementById('error').style.color='red';
+//      textf.style.border="Solid  5px red";
+//      textf.focus();
+//      return false;
+//      }else
+//      document.getElementById('error').innerHTML='';
+//      return true;
+
+// }
+
+
+ function ValiRegister(){
+     var textf = document.getElementById('fname')
+     if(textf.value ==0 ||textf==null){
+         document.getElementById('eror').innerHTML="You Most Your Name";
+         document.getElementById('eror').style.color='red';
+     textf.style.border="Solid  5px red";
+     textf.focus();
+     return false;
+     }
+     else
+
+     document.getElementById('eror').innerHTML='';
+     textf.style.border="Solid  5px green";
+     return true;
+    
+ }
+
+//     var remail = document.getElementById("idemail");
+//     // var reg = /@.com$/;
+//     var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//   console.log(regEmail.test(remail));
+
+
+</script> -->
+
+   
 </body>
-
 </html>

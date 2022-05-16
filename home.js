@@ -1,5 +1,5 @@
 
-var counter = 0
+var div1 = document.getElementById('div1')
 
 var pro = new XMLHttpRequest;
 
@@ -40,48 +40,93 @@ pro.onreadystatechange = function () {
             p2.setAttribute("class", "pstyle4")
 
 
-            var p3 = document.createElement("p");
+            var p3 = document.createElement("p")
             p3.innerText = sorted[i].price;
             p3.setAttribute("class", "span1")
+
+            var p4 = document.createElement("p")
+            var p5 = document.createElement("p")
+
 
             var bt = document.createElement("button")
             bt.innerText = "Add To Cart"
             // bt.setAttribute("class", "bt1")
             bt.addEventListener('click', add)
 
+            var bt2 = document.createElement("button")
+            bt2.innerText = "Add To Fav"
+            // bt.setAttribute("class", "bt1")
+            bt2.addEventListener('click', add2)
+            var p4 = document.createElement("p")
+            
+            var p5 = document.createElement("p")
+
+            p4.appendChild(bt)
+            p5.appendChild(bt2)
+
+
             newdiv.appendChild(img);
             newdiv.appendChild(p1);
             newdiv.appendChild(p2);
             newdiv.appendChild(p3);
-            newdiv.appendChild(bt);
-            var div1 = document.getElementById('div1')
+            // newdiv.appendChild(bt);
+            newdiv.appendChild(p4);
+            newdiv.appendChild(p5);
 
             div1.append(newdiv);
         
         function add(e) {
-            // console.log(this)
-            // console.log(e.target);
-            // localStorage.setItem('name', e.target.parentElement.children[2].innerText);
-            // localStorage.setItem('price', e.target.parentElement.children[2].innerText);
-        
-            // localStorage.setItem('name',JSON.stringify(e.target.parentElement.children[2].innerText));
-            // newdiv.classList.add("mystyle");
-            //   e.target.parentElement.classList.add("true")
-            // console.log(newpro[i])
-            // localStorage.setItem(`card${counter++}`, JSON.stringify(newpro[i]));
-            // localStorage.setItem("counter", counter);
+           
             for (var i = 0; i <sorted.length; i++) {
-        
-                if(sorted[i].name==e.target.parentElement.children[2].innerText)
-                {
-                  localStorage.setItem(`card${counter++}`,JSON.stringify(sorted[i]));
-                  localStorage.setItem("counter", counter);
-                  localStorage.setItem("programming", "Python");
 
+                if(sorted[i].name==e.target.parentElement.parentElement.children[2].innerText)
+                {
+                    var data = localStorage.getItem('name')
+                    if(data != null )
+                    {
+                        data= JSON.parse(localStorage.getItem('name'))
+                        // localStorage.setItem('name',JSON.stringify(sorted[i]));
+                }
+
+                else{
+
+                    data = []
+                    
+                }
+
+                     data.push(sorted[i])
+                     localStorage.setItem('name', JSON.stringify(data));
                 }      
             }           
-        }      
+        }  
+
+        function add2(e) {
+           
+            for (var i = 0; i <sorted.length; i++) {
+
+                if(sorted[i].name==e.target.parentElement.parentElement.children[2].innerText)
+                {
+                    var data2 = localStorage.getItem('name2')
+                    if(data2 != null )
+                    {
+                        data2 = JSON.parse(localStorage.getItem('name2'))
+                        // localStorage.setItem('name',JSON.stringify(sorted[i]));
+                }
+
+                else{
+
+                    data2 = []
+                    
+                }
+
+                     data2.push(sorted[i])
+                     localStorage.setItem('name2', JSON.stringify(data2));
+                }      
+            }           
+        }  
+            
       }
+     
     }
 
 }
@@ -93,33 +138,5 @@ pro.send()
 
 
 
-// localStorage.clear()
-// localStorage.setItem("programming", "Python");
-// localStorage.setItem("programming1", "1");
+localStorage.clear()
 
-
-function loading() {
-
-    var s = localStorage.getItem("counter");
-    console.log(s)
-
-    for (let index = 0; index < s ; index++) {
-        var c = JSON.parse(localStorage.getItem(`card${index}`));
-        console.log(c)
-        // display(c)
-
-    }
-}
-
-  
-//   function display(student)
-//   {
-//     ///create
-//     var elemnt = document.createElement("div");
-//     elemnt.classList.add("card", "bgbr");
-//     elemnt.innerHTML = `<p> student name is ${student.Name} </p>
-//                           <p> student age is ${student.Age}</p>`;
-//     //add to document
-//     var container = document.querySelector("body");
-//     container.append(elemnt);
-//   }

@@ -1,66 +1,137 @@
 
+var div1 = document.getElementById('div2')
+var pro = new XMLHttpRequest;
 
-var div2 = document.getElementById("div2")
-var ber = new XMLHttpRequest;
+pro.open("GET", "http://localhost:3000/berfums");
 
-ber.open("GET", "http://localhost:3000/berfums");
+pro.onreadystatechange = function () {
 
-ber.onreadystatechange = function () {
-    if (ber.status == 200 && ber.readyState == 4) {
+    if (pro.status == 200 && pro.readyState == 4) {
 
-        var newber = JSON.parse(ber.responseText)
+        var newpro = JSON.parse(pro.responseText)
+       var sorted =  newpro.sort(function(a,b){
+            return a.price - b.price
+        })
+        // console.log(newpro[0].name)
+        // console.log(newpro)
+        for (var i = 0; i < sorted.length; i++) {
 
-        // console.log(newpro[1])
+            var newdiv = document.createElement("div");
+            newdiv.setAttribute("class", "card")
 
-        for (var i = 0; i < newber.length; i++) {
+            var img = document.createElement("img");
+            img.setAttribute("src", sorted[i].image)
+            img.setAttribute("width", "200px")
+            img.setAttribute("height", "200px")
 
-            var newdiv2 = document.createElement("div");
-            newdiv2.setAttribute("class", "card")
-            
+            var p1 = document.createElement("p");
+            p1.innerText = sorted[i].category;
+            // p1.style.color = "red"
+            p1.setAttribute("class", "pstyl3")
 
-            var berimg = document.createElement("img");
-            berimg.setAttribute("src", newber[i].image)
-            berimg.setAttribute("width", "200px")
-            berimg.setAttribute("height", "200px")
-
-            var p1ber = document.createElement("p");
-            p1ber.innerText = newber[i].category;
-            p1ber.setAttribute("class", "pstyl3")
-
-            var p2ber = document.createElement("p");
-            p2ber.innerText = newber[i].name;
-            p2ber.style.color = "gray"
-            p2ber.setAttribute("class", "pstyle4")
+            var p2 = document.createElement("p");
+            p2.innerText = sorted[i].name;
+            p2.style.color = "gray"
+            p2.setAttribute("class", "pstyle4")
 
 
-            var p3ber = document.createElement("p");
-            p3ber.innerText = newber[i].price;
-            p3ber.setAttribute("class", "span1")
+            var p3 = document.createElement("p")
+            p3.innerText = sorted[i].price;
+            p3.setAttribute("class", "span1")
 
-            var berbt = document.createElement("button")
-            berbt.innerText = "Add To Cart"
+            var p4 = document.createElement("p")
+            var p5 = document.createElement("p")
+
+
+            var bt = document.createElement("button")
+            bt.innerText = "Add To Cart"
             // bt.setAttribute("class", "bt1")
-            berbt.addEventListener('click',show)
+            bt.addEventListener('click', add)
 
-            function show(e)
-            {
-                // console.log(this)
-                console.log(e.target.parentElement.children[2].innerText);
-                // localStorage.setItem('name', e.target.parentElement.children[2].innerText);
-                localStorage.setItem('name',JSON.stringify(e.target.parentElement.children[2].innerText));  
-            }
+            var bt2 = document.createElement("button")
+            bt2.innerText = "Add To Fav"
+            // bt.setAttribute("class", "bt1")
+            bt2.addEventListener('click', add2)
+            var p4 = document.createElement("p")
+            
+            var p5 = document.createElement("p")
 
-            newdiv2.appendChild(berimg);
-            newdiv2.appendChild(p1ber);
-            newdiv2.appendChild(p2ber);
-            newdiv2.appendChild(p3ber);
-            newdiv2.appendChild(berbt);
-            div2.appendChild(newdiv2) ;
-            // console.log(newdiv)
-        }
+            p4.appendChild(bt)
+            p5.appendChild(bt2)
+
+
+            newdiv.appendChild(img);
+            newdiv.appendChild(p1);
+            newdiv.appendChild(p2);
+            newdiv.appendChild(p3);
+            // newdiv.appendChild(bt);
+            newdiv.appendChild(p4);
+            newdiv.appendChild(p5);
+
+            div1.append(newdiv);
+        
+        function add(e) {
+           
+            for (var i = 0; i <sorted.length; i++) {
+
+                if(sorted[i].name==e.target.parentElement.parentElement.children[2].innerText)
+                {
+                    var data = localStorage.getItem('name')
+                    if(data != null )
+                    {
+                        data= JSON.parse(localStorage.getItem('name'))
+                        // localStorage.setItem('name',JSON.stringify(sorted[i]));
+                }
+
+                else{
+
+                    data = []
+                    
+                }
+
+                     data.push(sorted[i])
+                     localStorage.setItem('name', JSON.stringify(data));
+                }      
+            }           
+        }  
+
+        function add2(e) {
+           
+            for (var i = 0; i <sorted.length; i++) {
+
+                if(sorted[i].name==e.target.parentElement.parentElement.children[2].innerText)
+                {
+                    var data2 = localStorage.getItem('name2')
+                    if(data2 != null )
+                    {
+                        data2 = JSON.parse(localStorage.getItem('name2'))
+                        // localStorage.setItem('name',JSON.stringify(sorted[i]));
+                }
+
+                else{
+
+                    data2 = []
+                    
+                }
+
+                     data2.push(sorted[i])
+                     localStorage.setItem('name2', JSON.stringify(data2));
+                }      
+            }           
+        }  
+            
+      }
+     
     }
 
 }
 
-ber.send()
+
+
+
+pro.send()
+
+
+
+localStorage.clear()
 
